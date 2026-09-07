@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   New Blossom Hotel & Spa — Design System
+   Cream, gold, brown, botanical green. Material 3 inspired tokens.
+   ────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Brand palette */
+  --color-cream: #faf6ef;
+  --color-cream-deep: #f3ece0;
+  --color-sand: #e8dcc8;
+
+  --color-gold: #c9a55c;
+  --color-gold-deep: #b08d3e;
+  --color-gold-light: #ddc288;
+
+  --color-brown: #7d5226;
+  --color-brown-deep: #5c3a18;
+  --color-brown-light: #a07842;
+
+  --color-botanical: #4a6b3a;
+  --color-botanical-deep: #355028;
+  --color-botanical-light: #6b8c5a;
+
+  /* Semantic surface tokens (Material 3 style) */
+  --color-background: #faf6ef;
+  --color-surface: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f2e9;
+  --color-surface-container: #f3ece0;
+  --color-surface-container-high: #ede4d4;
+  --color-surface-container-highest: #e8dcc8;
+
+  --color-on-surface: #2d1f12;
+  --color-on-surface-variant: #6b5a48;
+  --color-outline: #d4c4a8;
+  --color-outline-variant: #e0d4bc;
+
+  /* Primary = brown */
+  --color-primary: #7d5226;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #f0e0c8;
+  --color-on-primary-container: #5c3a18;
+  --color-primary-fixed: #e8d5b8;
+
+  /* Secondary = gold */
+  --color-secondary: #c9a55c;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #f5ead0;
+  --color-on-secondary-container: #6b5210;
+  --color-secondary-fixed: #f0dfb0;
+
+  /* Tertiary = botanical green */
+  --color-tertiary: #4a6b3a;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #d8e8cc;
+  --color-on-tertiary-container: #2e4a20;
+  --color-tertiary-fixed: #c8dcb8;
+
+  /* Error */
+  --color-error: #b3261e;
+  --color-on-error: #ffffff;
+  --color-error-container: #f9dedc;
+  --color-on-error-container: #8c1d18;
+
+  /* Typography — font families (generate font-headline-md, font-label-md, etc.) */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "Noto Sans", system-ui, sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-headline-md: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-headline-sm: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-title-md: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-label-md: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-label-sm: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body-md: "Noto Sans", system-ui, sans-serif;
+  --font-body-sm: "Noto Sans", system-ui, sans-serif;
+  --font-body-lg: "Noto Sans", system-ui, sans-serif;
+  --font-price-lg: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-price-md: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Container */
+  --container-max: 1280px;
+
+  /* Spacing scale (matching inspiration) */
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Font sizes (matching inspiration) */
+  --font-size-display-lg: 2.25rem;
+  --font-size-headline-lg: 1.75rem;
+  --font-size-headline-md: 1.375rem;
+  --font-size-headline-sm: 1.125rem;
+  --font-size-title-md: 1rem;
+  --font-size-label-md: 0.875rem;
+  --font-size-label-sm: 0.75rem;
+  --font-size-body-md: 0.875rem;
+  --font-size-body-sm: 0.75rem;
+  --font-size-price-lg: 1.25rem;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use display font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-container-low);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brown-light);
+}
+
+/* Container utility */
+@utility container-max {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Material Symbols — loaded via CDN link in layout */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile nav link */
+.mobile-nav-link {
+  display: block;
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  border-bottom: 1px solid var(--color-outline-variant);
+  transition: all 0.2s;
+}
+.mobile-nav-link:hover {
+  background-color: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+}
+.mobile-nav-link.active {
+  background-color: var(--color-surface-container-high);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

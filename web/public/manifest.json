@@ -1,0 +1,21 @@
+{
+  "name": "New Blossom Hotel & Spa",
+  "short_name": "New Blossom",
+  "description": "A sanctuary of restorative calm and botanical luxury in Dire Dawa, Ethiopia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6ef",
+  "theme_color": "#7d5226",
+  "icons": [
+    {
+      "src": "/images/new-blossom-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/new-blossom-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
