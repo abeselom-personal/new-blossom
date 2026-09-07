@@ -1,0 +1,24 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Go
+api/bin/
+api/tmp/
+
+# Next.js
+web/.next/
+web/out/
+web/node_modules/
+
+# Docker
+infrastructure/data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

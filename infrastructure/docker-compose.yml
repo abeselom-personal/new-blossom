@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────
+# New Blossom Hotel & Spa — Docker Compose
+#
+# Services:
+#   - web:   Next.js frontend (port 3000)
+#   - api:   Go backend API (port 8080)
+#   - minio: Object storage for images (ports 9000/9001)
+#
+# PostgreSQL runs on the host machine — connected via host network.
+# Containers do NOT auto-start on boot. Use ./scripts/start.sh manually.
+# ─────────────────────────────────────────────────────────────
+
+services:
+  web:
+    build:
+      context: ../web
+      dockerfile: Dockerfile
+    container_name: nb-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8080/api/v1
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+    depends_on:
+      - api
+    restart: "no"
+    networks:
+      - nb-net
+
+  api:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    container_name: nb-api
+    ports:
+      - "8080:8080"
+    env_file:
+      - ../.env
+    environment:
+      - DB_HOST=host-gateway
+      - DB_PORT=5432
+      - MINIO_ENDPOINT=nb-minio:9000
+      - MINIO_USE_SSL=false
+    extra_hosts:
+      - "host-gateway:host-gateway"
+    depends_on:
+      - minio
+    restart: "no"
+    networks:
+      - nb-net
+
+  minio:
+    image: minio/minio:latest
+    container_name: nb-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-nb_minio_admin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-nb_minio_secret_2025}
+    command: server /data --console-address ":9001"
+    volumes:
+      - nb-minio-data:/data
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+    networks:
+      - nb-net
+
+volumes:
+  nb-minio-data:
+    driver: local
+
+networks:
+  nb-net:
+    driver: bridge
